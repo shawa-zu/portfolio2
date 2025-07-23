@@ -85,9 +85,10 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: expected9_production
-    username: expected9
-    password: <%= ENV["EXPECTED9_DATABASE_PASSWORD"] %>
+    database: <%= ENV["EXPECTED9_DB_NAME"] || "expected9_production" %>
+    username: <%= ENV["EXPECTED9_DB_USER"] %>
+    password: <%= ENV["EXPECTED9_DB_PASSWORD"] %>
+    host: <%= ENV["EXPECTED9_DB_HOST"] %>
   cache:
     <<: *primary_production
     database: expected9_production_cache
