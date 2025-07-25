@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lineups, only: [:index,:show, :new, :create, :edit, :update, :destroy] 
   resources :players, only: [:index, :new, :create, :edit, :update, :destroy]
   devise_for :users
   root to: "home#index"
