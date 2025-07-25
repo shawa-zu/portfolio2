@@ -1,5 +1,7 @@
 class Player < ApplicationRecord
   belongs_to :user
+  has_many :lineup_entries
+  has_many :lineups, through: :lineup_entries
 
   attribute :stat_1b, :float, default: 0.0
   attribute :stat_2b, :float, default: 0.0
