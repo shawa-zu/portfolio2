@@ -1,2 +1,31 @@
-<h1>Players#index</h1>
-<p>Find me in app/views/players/index.html.erb</p>
+<h1 class="text-3xl font-bold mb-6">選手一覧</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <% @players.each do |player| %>
+    <div class="border rounded-lg shadow-sm bg-white p-4">
+      <h2 class="text-lg font-semibold mb-1">
+        <%= player.number.presence || '–' %>. <%= player.name %>
+      </h2>
+      <% if player.respond_to?(:kana) && player.kana.present? %>
+        <p class="text-sm text-gray-500">フリガナ: <%= player.kana %></p>
+      <% end %>
+      <% if player.respond_to?(:position) %>
+        <p class="text-sm">守備位置: <%= player.position.presence || '-' %></p>
+      <% end %>
+      <% if player.respond_to?(:batting_order) %>
+        <p class="text-sm">打順: <%= player.batting_order.presence || '-' %></p>
+      <% end %>
+      <% if player.respond_to?(:notes) && player.notes.present? %>
+        <p class="text-xs text-gray-500 mt-1">備考: <%= truncate(player.notes, length: 40) %></p>
+      <% end %>
+      <div class="flex justify-end space-x-2 mt-3">
+        <%= link_to '編集', edit_player_path(player), class: 'px-3 py-1 text-sm border rounded hover:bg-gray-50' %>
+        <%= button_to '削除', player, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-6">
+  <%= link_to '新規選手登録', new_player_path, class: 'px-4 py-2 text-white bg-black rounded hover:bg-gray-800' %>
+</div>

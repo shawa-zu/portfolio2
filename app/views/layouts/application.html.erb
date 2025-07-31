@@ -22,6 +22,7 @@
   </head>
 
   <body>
+    <%= render 'shared/header' %>
     <% flash.each do |key, value| %>
       <p class="<%= key %>"><%= value %></p>
     <% end %>

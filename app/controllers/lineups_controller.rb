@@ -9,7 +9,7 @@ class LineupsController < ApplicationController
 
   def new
     @lineup = Player.new
-    9.times { @lineup.lineup_entrys.build }
+    9.times { @lineup.lineup_entries.build }
   end
 
   def create

@@ -1,0 +1,19 @@
+<h1 class="text-2xl font-bold mb-4">選手詳細</h1>
+
+<div class="border rounded-lg shadow-sm bg-white max-w-xl p-6">
+  <h2 class="text-xl font-semibold mb-2">
+    <%= @player.number.presence || '–' %>. <%= @player.name %>
+  </h2>
+  <% if @player.kana.present? %>
+    <p class="text-sm text-gray-500">フリガナ: <%= @player.kana %></p>
+  <% end %>
+  <p class="mt-1">守備位置: <%= @player.position.presence || '-' %></p>
+  <p class="mt-1">打順: <%= @player.batting_order.presence || '-' %></p>
+  <% if @player.notes.present? %>
+    <p class="mt-2 text-sm text-gray-600">備考: <%= simple_format(@player.notes) %></p>
+  <% end %>
+  <div class="flex justify-end space-x-2 mt-4">
+    <%= link_to '編集', edit_player_path(@player), class: 'px-4 py-2 border rounded hover:bg-gray-50' %>
+    <%= link_to '一覧へ戻る', players_path, class: 'px-4 py-2 bg-black text-white rounded hover:bg-gray-800' %>
+  </div>
+</div>
