@@ -5,5 +5,4 @@ class LineupEntry < ApplicationRecord
   validates :player_id, uniqueness: { scope: :lineup_id, message: "同じ選手を複数回登録することはできません" }
   validates :batting_order, presence: true, uniqueness: { scope: :lineup_id, message: "同じ打順を複数回登録することはできません" },
             numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 9 }
-
 end

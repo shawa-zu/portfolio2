@@ -1,5 +1,5 @@
 <div class="text-center py-20">
   <h1 class="text-4xl font-bold mb-4">野球の得点期待値をシミュレーション</h1>
   <p class="text-gray-600 mb-6">打線を組んで得点の期待値を確認できます</p>
-  <%= link_to '今すぐ試してみる', (defined?(new_user_path) ? new_user_path : '#'), class: 'px-6 py-3 bg-black text-white rounded hover:bg-gray-800' %>
+  <%= link_to '今すぐ試してみる', (respond_to?(new_user_registration_path) ? new_user_registration_path : '#'), class: 'px-6 py-3 bg-black text-white rounded hover:bg-gray-800' %>
 </div>
