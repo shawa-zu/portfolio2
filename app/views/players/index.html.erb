@@ -1,26 +1,28 @@
 <h1 class="text-3xl font-bold mb-6">選手一覧</h1>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
   <% @players.each do |player| %>
-    <div class="border rounded-lg shadow-sm bg-white p-4">
-      <h2 class="text-lg font-semibold mb-1">
-        <%= player.number.presence || '–' %>. <%= player.name %>
-      </h2>
-      <% if player.respond_to?(:kana) && player.kana.present? %>
-        <p class="text-sm text-gray-500">フリガナ: <%= player.kana %></p>
-      <% end %>
-      <% if player.respond_to?(:position) %>
-        <p class="text-sm">守備位置: <%= player.position.presence || '-' %></p>
-      <% end %>
-      <% if player.respond_to?(:batting_order) %>
-        <p class="text-sm">打順: <%= player.batting_order.presence || '-' %></p>
-      <% end %>
-      <% if player.respond_to?(:notes) && player.notes.present? %>
-        <p class="text-xs text-gray-500 mt-1">備考: <%= truncate(player.notes, length: 40) %></p>
-      <% end %>
-      <div class="flex justify-end space-x-2 mt-3">
-        <%= link_to '編集', edit_player_path(player), class: 'px-3 py-1 text-sm border rounded hover:bg-gray-50' %>
-        <%= button_to '削除', player, method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'px-3 py-1 text-sm text-white bg-red-500 rounded hover:bg-red-600' %>
+    <div class="border rounded-lg p-4 bg-white">
+      <!-- 名前 -->
+      <h2 class="text-xl font-bold mb-1"><%= player.name %></h2>
+
+      <!-- チーム・ポジション・日付 -->
+      <p class="text-sm text-gray-700"><%= player.team.presence || 'チーム不明' %></p>
+      <p class="text-sm text-gray-700"><%= player.position.presence || 'ポジション不明' %></p>
+      <p class="text-sm text-gray-500 mb-2"><%= player.created_at.strftime("%Y/%m/%d") %></p>
+
+      <!-- 成績 -->
+      <div class="text-sm leading-5 space-y-1">
+        <p><b>1B:</b> <%= player.stat_1b || 0 %></p>
+        <p><b>2B:</b> <%= player.stat_2b || 0 %></p>
+        <p><b>3B:</b> <%= player.stat_3b || 0 %></p>
+        <p><b>HR:</b> <%= player.stat_hr || 0 %></p>
+        <p><b>out:</b> <%= player.stat_out || 0 %></p>
+      </div>
+
+      <!-- ボタン -->
+      <div class="flex justify-start space-x-2 mt-3">
+        <%= link_to '編集', edit_player_path(player), class: 'px-3 py-1 text-xs border rounded hover:bg-gray-100' %>
       </div>
     </div>
   <% end %>
