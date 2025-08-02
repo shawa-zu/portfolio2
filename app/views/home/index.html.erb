@@ -1,5 +1,106 @@
-<div class="text-center py-20">
-  <h1 class="text-4xl font-bold mb-4">野球の得点期待値をシミュレーション</h1>
-  <p class="text-gray-600 mb-6">打線を組んで得点の期待値を確認できます</p>
-  <%= link_to '今すぐ試してみる', (respond_to?(new_user_registration_path) ? new_user_registration_path : '#'), class: 'px-6 py-3 bg-black text-white rounded hover:bg-gray-800' %>
-</div>
+<% if user_signed_in? %>
+  <!-- ログイン後 -->
+  <div class="min-h-screen bg-gray-100">
+    <!-- Header -->
+    <div class="bg-gray-200 px-4 py-2">
+      <span class="text-gray-600">マイページ</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- 打線一覧 -->
+        <div class="bg-white rounded-lg shadow-sm">
+          <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-xl font-semibold text-gray-900">打線一覧</h2>
+            <%= link_to "打線作成", new_lineup_path, class: "px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 text-sm font-medium" %>
+          </div>
+          
+          <div class="p-6 space-y-4">
+            <% @lineups.each do |lineup| %>
+              <div class="border border-gray-300 rounded-lg p-4">
+                <div class="flex justify-between items-start">
+                  <div class="flex-1">
+                    <h3 class="font-medium text-gray-900 mb-1"><%= lineup.name %></h3>
+                    <p class="text-sm text-gray-500 mb-3"><%= lineup.created_at.strftime("%Y/%m/%d") %></p>
+                    <div class="flex space-x-2">
+                      <%= link_to "詳細", lineup_path(lineup), class: "px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50" %>
+                      <%= link_to "編集", edit_lineup_path(lineup), class: "px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50" %>
+                    </div>
+                  </div>
+                  <div class="text-right ml-4">
+                    <div class="text-3xl font-bold text-gray-900"><%= sprintf("%.2f", lineup.expected_score) %></div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            
+            <% if @lineups.empty? %>
+              <div class="border border-gray-300 rounded-lg p-8 text-center">
+                <p class="text-gray-500">まだ打線が作成されていません</p>
+              </div>
+            <% end %>
+            
+            <div class="pt-2">
+              <%= link_to "作成済み打線を全て見る", lineups_path, class: "text-blue-600 hover:text-blue-800 text-sm" %>
+            </div>
+          </div>
+        </div>
+
+        <!-- 選手一覧 -->
+        <div class="bg-white rounded-lg shadow-sm">
+          <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-xl font-semibold text-gray-900">選手一覧</h2>
+            <%= link_to "選手作成", new_player_path, class: "px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 text-sm font-medium" %>
+          </div>
+          
+          <div class="p-6 space-y-4">
+            <% @players.each do |player| %>
+              <div class="border border-gray-300 rounded-lg p-4">
+                <div class="flex justify-between items-start">
+                  <div class="flex-1">
+                    <h3 class="font-medium text-gray-900 mb-1"><%= player.name %></h3>
+                    <p class="text-sm text-gray-600 mb-1"><%= player.team %> <%= player.position %></p>
+                    <p class="text-sm text-gray-500 mb-3"><%= player.created_at.strftime("%Y/%m/%d") %></p>
+                    <div class="flex space-x-2">
+                      <%= link_to "詳細", player_path(player), class: "px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50" %>
+                      <%= link_to "編集", edit_player_path(player), class: "px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-gray-50" %>
+                    </div>
+                  </div>
+                  <div class="text-right ml-4 text-sm">
+                    <div class="space-y-0.5">
+                      <div><span class="font-medium">1B:</span> <%= sprintf("%.3f", player.stat_1b) %></div>
+                      <div><span class="font-medium">2B:</span> <%= sprintf("%.3f", player.stat_2b) %></div>
+                      <div><span class="font-medium">3B:</span> <%= sprintf("%.3f", player.stat_3b) %></div>
+                      <div><span class="font-medium">HR:</span> <%= sprintf("%.3f", player.stat_hr) %></div>
+                      <div><span class="font-medium">out:</span> <%= sprintf("%.3f", player.stat_out) %></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            
+            <% if @players.empty? %>
+              <div class="border border-gray-300 rounded-lg p-8 text-center">
+                <p class="text-gray-500">まだ選手が作成されていません</p>
+              </div>
+            <% end %>
+            
+            <div class="pt-2">
+              <%= link_to "作成済み選手を全て見る", players_path, class: "text-blue-600 hover:text-blue-800 text-sm" %>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<% else %>
+  <!-- ログイン前 -->
+  <div class="text-center py-20">
+    <h1 class="text-4xl font-bold mb-4">野球の得点期待値をシミュレーション</h1>
+    <p class="text-gray-600 mb-6">打線を組んで得点の期待値を確認できます</p>
+    <%= link_to '今すぐ試してみる', new_user_registration_path, class: 'px-6 py-3 bg-black text-white rounded hover:bg-gray-800' %>
+  </div>
+<% end %>

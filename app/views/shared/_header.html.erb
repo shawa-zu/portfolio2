@@ -10,7 +10,7 @@
         <%= link_to '打線一覧', respond_to?(:lineups_path) ? lineups_path : '#', class: 'hover:underline' %>
         <%= link_to '選手作成', respond_to?(:new_player_path) ? new_player_path : '#', class: 'hover:underline' %>
         <%= link_to '選手一覧', respond_to?(:players_path) ? players_path : '#', class: 'hover:underline' %>
-        <%= link_to 'ログアウト', respond_to?(:logout_path) ? logout_path : '#', method: :delete, class: 'ml-4 px-3 py-1 bg-black text-white rounded' %>
+        <%= button_to 'ログあ', respond_to?(:destroy_user_session_path) ? destroy_user_session_path : '#', method: :delete, class: 'ml-4 px-3 py-1 bg-black text-white rounded' %>
       <% else %>
         <%# 未ログインユーザー向けナビ: サインアップとログイン %>
         <%= link_to 'サインアップ', respond_to?(:new_user_registration_path) ? new_user_registration_path : '#', class: 'px-3 py-1 border rounded hover:bg-gray-50' %>
