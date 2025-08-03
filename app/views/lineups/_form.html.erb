@@ -1,0 +1,29 @@
+<%= form_with model: @lineup, url: lineups_path, local: true, class: "space-y-6" do |f| %>
+  <div>
+    <%= f.label :name, "打順名", class: "block font-medium mb-1" %>
+    <%= f.text_field :name, class: "w-full border rounded p-2" %>
+  </div>
+
+  <div>
+    <%= f.label :description, "説明", class: "block font-medium mb-1" %>
+    <%= f.text_area :description, class: "w-full border rounded p-2 h-24" %>
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <%= f.fields_for :lineup_entries do |entry_fields| %>
+      <div>
+        <%= entry_fields.label :player_id, "#{entry_fields.object.batting_order}番", class: "block font-medium mb-1" %>
+        <%= entry_fields.collection_select :player_id,
+              Player.all, :id, :name,
+              { prompt: "選手を選択" },
+              class: "w-full border rounded p-2" %>
+        <%= entry_fields.hidden_field :batting_order %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex gap-4 mt-6">
+    <%= f.submit "作成", class: "bg-black text-white px-4 py-2 rounded hover:bg-gray-800" %>
+    <%= link_to "戻る", lineups_path, class: "border px-4 py-2 rounded hover:bg-gray-100" %>
+  </div>
+<% end %>

@@ -1,0 +1,46 @@
+<%= form_with(model: player, local: true, class: "space-y-4") do |f| %>
+  <div>
+    <%= f.label :name, '名前', class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.text_field :name, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500', required: true %>
+  </div>
+
+  <div>
+    <%= f.label :team, 'チーム', class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.text_field :team, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500' %>
+  </div>
+
+  <div>
+    <%= f.label :position, '守備位置', class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.text_field :position, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500' %>
+  </div>
+
+  <div>
+    <%= f.label :stat_1b, '一塁打率', class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.number_field :stat_1b, step: :any, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500' %>
+  </div>
+
+  <div>
+    <%= f.label :stat_2b, '二塁打率', class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.number_field :stat_2b, step: :any, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'%>
+  </div>
+
+  <div>
+    <%= f.label :stat_3b, '三塁打率', class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.number_field :stat_3b, step: :any, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'%>
+  </div>
+
+  <div>
+    <%= f.label :stat_hr, '本塁打率', class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.number_field :stat_hr, step: :any, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500' %>
+  </div>
+
+  <div>
+    <%= f.label :notes, '備考', class: 'block text-sm font-medium text-gray-700' %>
+    <%= f.text_area :notes, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500'%>
+  </div>
+
+  <div class="flex justify-between mt-6">
+    <%= link_to '戻る', players_path, class: 'px-4 py-2 border rounded hover:bg-gray-50' %>
+    <%= f.submit '登録', class: 'px-4 py-2 bg-black text-white rounded hover:bg-gray-800' %>
+  </div>
+<% end %>

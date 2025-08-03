@@ -8,8 +8,10 @@ class LineupsController < ApplicationController
   end
 
   def new
-    @lineup = Player.new
-    9.times { @lineup.lineup_entrys.build }
+    @lineup = Lineup.new
+    (1..9).each do |i|
+      @lineup.lineup_entries.build(batting_order: i)
+    end
   end
 
   def create

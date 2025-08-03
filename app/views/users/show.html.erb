@@ -1,0 +1,49 @@
+<h1 class="text-2xl font-bold mb-6">マイページ</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div>
+    <h2 class="text-xl font-semibold mb-2">打線一覧</h2>
+    <% if defined?(@lineups) && @lineups.present? %>
+      <div class="space-y-2">
+        <% @lineups.each do |lineup| %>
+          <div class="border rounded-md p-3 bg-white shadow-sm flex justify-between items-center">
+            <div>
+              <p class="font-semibold"><%= lineup.respond_to?(:name) && lineup.name.present? ? lineup.name : '打線' %></p>
+              <% if lineup.respond_to?(:game_date) %>
+                <p class="text-sm text-gray-600"><%= lineup.game_date %></p>
+              <% end %>
+            </div>
+            <div class="flex items-center space-x-2">
+              <% if lineup.respond_to?(:expected_runs) %>
+                <p class="text-lg font-bold"><%= lineup.expected_runs %></p>
+              <% end %>
+              <%= link_to '詳細', respond_to?(:lineup_path) ? lineup_path(lineup) : '#', class: 'text-sm underline' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500">登録された打線がありません。</p>
+    <% end %>
+  </div>
+  <div>
+    <h2 class="text-xl font-semibold mb-2">選手一覧</h2>
+    <% if defined?(@players) && @players.present? %>
+      <div class="space-y-2">
+        <% @players.each do |player| %>
+          <div class="border rounded-md p-3 bg-white shadow-sm flex justify-between items-center">
+            <div>
+              <p class="font-semibold"><%= player.name %></p>
+              <% if player.respond_to?(:number) %>
+                <p class="text-sm text-gray-600">背番号: <%= player.number %></p>
+              <% end %>
+            </div>
+            <%= link_to '詳細', respond_to?(:player_path) ? player_path(player) : '#', class: 'text-sm underline' %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500">登録された選手がありません。</p>
+    <% end %>
+  </div>
+</div>

@@ -1,2 +1,7 @@
-<h1>Lineups#edit</h1>
-<p>Find me in app/views/lineups/edit.html.erb</p>
+<h1 class="text-3xl font-bold mb-6">打順編集</h1>
+
+<%= render "form", lineup: @lineup %>
+
+<div class="mt-6">
+  <%= link_to "戻る", lineups_path, class: "border px-4 py-2 rounded hover:bg-gray-100" %>
+</div>
