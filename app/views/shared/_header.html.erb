@@ -5,7 +5,7 @@
       <%# ナビゲーションリンク: ログイン済みかどうかで表示を切り替えます %>
       <% if defined?(user_signed_in?) && user_signed_in? %>
         <%# ログインユーザー向けナビ %>
-        <%= link_to 'マイページ', respond_to?(:mypage_path) ? mypage_path : '#', class: 'hover:underline' %>
+        
         <%= link_to '打線作成', respond_to?(:new_lineup_path) ? new_lineup_path : '#', class: 'hover:underline' %>
         <%= link_to '打線一覧', respond_to?(:lineups_path) ? lineups_path : '#', class: 'hover:underline' %>
         <%= link_to '選手作成', respond_to?(:new_player_path) ? new_player_path : '#', class: 'hover:underline' %>
