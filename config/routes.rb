@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :lineups, only: [:index,:show, :new, :create, :edit, :update, :destroy] 
-  resources :players, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :lineups, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
+  resources :players, only: [ :index, :new, :create, :edit, :update, :destroy ]
   devise_for :users
   root to: "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
