@@ -41,7 +41,7 @@ class Lineup < ApplicationRecord
 
   # 1イニングの処理（前に作ったやつ）
   def simulate_inning(batting_order, start_index)
-    bases = [nil, nil, nil]
+    bases = [ nil, nil, nil ]
     outs = 0
     score = 0
     batter_index = start_index
@@ -91,7 +91,7 @@ class Lineup < ApplicationRecord
     bases[2] = bases[1]    # 二塁→三塁
     bases[1] = bases[0]    # 一塁→二塁
     bases[0] = batter      # 打者が一塁へ
-    [bases, score]
+    [ bases, score ]
   end
 
   def handle_double(bases, score, batter)
@@ -100,19 +100,19 @@ class Lineup < ApplicationRecord
     bases[2] = bases[0]    # 一塁→三塁
     bases[1] = batter      # 打者が二塁へ
     bases[0] = nil
-    [bases, score]
+    [ bases, score ]
   end
 
   def handle_triple(bases, score, batter)
     bases.compact.each { |_| score += 1 }
-    bases = [nil, nil, batter]
-    [bases, score]
+    bases = [ nil, nil, batter ]
+    [ bases, score ]
   end
 
   def handle_home_run(bases, score, batter)
     bases.compact.each { |_| score += 1 }
     score += 1 # 打者自身
-    bases = [nil, nil, nil]
-    [bases, score]
+    bases = [ nil, nil, nil ]
+    [ bases, score ]
   end
 end

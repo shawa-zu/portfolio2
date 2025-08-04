@@ -56,6 +56,6 @@ group :development do
   gem "web-console"
 end
 
-gem 'devise', '~> 4.9' 
+gem "devise", "~> 4.9"
 
 gem "tailwindcss-rails", "~> 4.3"

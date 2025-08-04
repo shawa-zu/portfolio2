@@ -21,7 +21,7 @@ class Player < ApplicationRecord
   # 後でerrorsオブジェクトについて調べとく
   def total_stats_cannot_exceed_one
     total = stat_1b.to_f + stat_2b.to_f + stat_3b.to_f + stat_hr.to_f + stat_out.to_f
-    errors.add(:base, "合計値が1.0を超えています") if total > 1.0 
+    errors.add(:base, "合計値が1.0を超えています") if total > 1.0
   end
 
   def calculate_stat_out

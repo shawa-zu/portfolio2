@@ -1,5 +1,5 @@
 class LineupsController < ApplicationController
-  before_action :set_lineup, only: [:show, :edit, :update, :destroy]
+  before_action :set_lineup, only: [ :show, :edit, :update, :destroy ]
   def index
     @lineups = current_user.lineups.order(created_at: :desc)
   end
@@ -30,7 +30,7 @@ class LineupsController < ApplicationController
 
   def update
     if @lineup.update(lineup_params)
-      redirect_to @lineup, notice: '打線を更新しました。'
+      redirect_to @lineup, notice: "打線を更新しました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class LineupsController < ApplicationController
 
   def destroy
     @lineup.destroy
-    redirect_to lineups_url, notice: '打線を削除しました。'
+    redirect_to lineups_url, notice: "打線を削除しました。"
   end
 
   private
@@ -48,6 +48,6 @@ class LineupsController < ApplicationController
 
   def lineup_params
     params.require(:lineup).permit(:name, :description, :expected_score,
-                                   lineup_entries_attributes: [:id, :player_id, :batting_order, :_destroy])
+                                   lineup_entries_attributes: [ :id, :player_id, :batting_order, :_destroy ])
   end
 end
