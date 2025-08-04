@@ -7,7 +7,7 @@ class Player < ApplicationRecord
   attribute :stat_2b, :float, default: 0.0
   attribute :stat_3b, :float, default: 0.0
   attribute :stat_hr, :float, default: 0.0
-  attribute :stat_out, :float, default: 1.0
+  attribute :stat_out, :float, default: 0.0 # 初期値を1.0にしたらtotal > 1.0判定になる。outはdefaultいらないかも
 
   before_save :calculate_stat_out
 
