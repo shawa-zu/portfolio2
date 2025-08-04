@@ -8,7 +8,8 @@ class LineupsController < ApplicationController
   end
 
   def new
-    @lineup = Lineup.new
+    @lineup = current_user.lineups.build
+    @players = current_user.players.order(:name)
     (1..9).each do |i|
       @lineup.lineup_entries.build(batting_order: i)
     end

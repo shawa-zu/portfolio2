@@ -14,7 +14,7 @@
       <div>
         <%= entry_fields.label :player_id, "#{entry_fields.object.batting_order}番", class: "block font-medium mb-1" %>
         <%= entry_fields.collection_select :player_id,
-              Player.all, :id, :name,
+              @players, :id, :name,
               { prompt: "選手を選択" },
               class: "w-full border rounded p-2" %>
         <%= entry_fields.hidden_field :batting_order %>
