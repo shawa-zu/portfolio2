@@ -11,7 +11,7 @@ class PlayersController < ApplicationController
   def create
     @player = current_user.players.build(player_params)
     if @player.save
-      flash[:notice] = "Player created successfully."
+      flash[:notice] = "選手を作成しました"
       redirect_to players_path
     else
       flash.now[:alert] = @player.errors.full_messages.to_sentence
@@ -24,7 +24,7 @@ class PlayersController < ApplicationController
 
   def update
     if @player.update(player_params)
-      flash[:notice] = "Player updated successfully."
+      flash[:notice] = "選手を更新しました"
       redirect_to players_path
     else
       flash.now[:alert] = @player.errors.full_messages.to_sentence
@@ -34,7 +34,7 @@ class PlayersController < ApplicationController
 
   def destroy
     @player.destroy
-    flash[:notice] = "Player deleted successfully."
+    flash[:notice] = "選手を削除しました"
     redirect_to players_path
   end
 

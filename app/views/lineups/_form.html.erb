@@ -1,6 +1,6 @@
 <%= form_with model: @lineup, local: true, class: "space-y-6" do |f| %>
   <div>
-    <%= f.label :name, "打順名", class: "block font-medium mb-1" %>
+    <%= f.label :name, "※打順名", class: "block font-medium mb-1" %>
     <%= f.text_field :name, class: "w-full border rounded p-2" %>
   </div>
 
@@ -12,15 +12,20 @@
   <div class="grid grid-cols-2 gap-4">
     <%= f.fields_for :lineup_entries do |entry_fields| %>
       <div>
-        <%= entry_fields.label :player_id, "#{entry_fields.object.batting_order}番", class: "block font-medium mb-1" %>
+        <%= entry_fields.label :player_id, "※#{entry_fields.object.batting_order}番", class: "block font-medium mb-1" %>
         <%= entry_fields.collection_select :player_id,
               @players, :id, :name,
               { prompt: "選手を選択" },
-              class: "w-full border rounded p-2" %>
+              { class: "w-full border rounded p-2", required: true } %>
         <%= entry_fields.hidden_field :batting_order %>
+
+        <% if entry_fields.object.errors[:player_id].any? %>
+          <p class="text-red-500 text-sm mt-1"><%= entry_fields.object.errors[:player_id].first %></p>
+        <% end %>
       </div>
     <% end %>
   </div>
+
   <div class="mt-6">
     <%= f.submit @lineup.persisted? ? "更新" : "登録", class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
     <%= link_to "戻る", lineups_path, class: "border px-4 py-2 rounded hover:bg-gray-100 ml-4" %>
