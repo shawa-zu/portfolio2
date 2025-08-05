@@ -1,4 +1,4 @@
-<%= form_with model: @lineup, url: lineups_path, local: true, class: "space-y-6" do |f| %>
+<%= form_with model: @lineup, local: true, class: "space-y-6" do |f| %>
   <div>
     <%= f.label :name, "打順名", class: "block font-medium mb-1" %>
     <%= f.text_field :name, class: "w-full border rounded p-2" %>
@@ -21,9 +21,8 @@
       </div>
     <% end %>
   </div>
-
-  <div class="flex gap-4 mt-6">
-    <%= f.submit "作成", class: "bg-black text-white px-4 py-2 rounded hover:bg-gray-800" %>
-    <%= link_to "戻る", lineups_path, class: "border px-4 py-2 rounded hover:bg-gray-100" %>
+  <div class="mt-6">
+    <%= f.submit @lineup.persisted? ? "更新" : "登録", class: "bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" %>
+    <%= link_to "戻る", lineups_path, class: "border px-4 py-2 rounded hover:bg-gray-100 ml-4" %>
   </div>
 <% end %>

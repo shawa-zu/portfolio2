@@ -26,21 +26,21 @@ class LineupsController < ApplicationController
     end
   end
 
-  def edit
-    @lineup = current_user.lineups.build
-    @players = current_user.players.order(:name)
-    (1..9).each do |i|
-      @lineup.lineup_entries.build(batting_order: i)
-    end
-  end
+def edit
+  @lineup = current_user.lineups.find(params[:id])
+  @players = current_user.players.order(:name)
+end
 
-  def update
-    if @lineup.update(lineup_params)
-      redirect_to @lineup, notice: "打線を更新しました。"
-    else
-      render :edit, status: :unprocessable_entity
-    end
+def update
+  @lineup = current_user.lineups.find(params[:id])
+  if @lineup.update(lineup_params)
+    flash[:notice] = "打線を更新しました。"
+    redirect_to lineups_path
+  else
+    flash.now[:alert] = @lineup.errors.full_messages.to_sentence
+    render :edit, status: :unprocessable_entity
   end
+end
 
   def destroy
     @lineup.destroy
