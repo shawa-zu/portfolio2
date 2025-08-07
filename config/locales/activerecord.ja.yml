@@ -11,9 +11,12 @@ ja:
         user:
           attributes:
             email:
-              taken: "はすでに使用されています"
+              taken: "の入力内容をご確認ください"
+              blank: "を入力してください"
             password:
               too_short: "は%{count}文字以上で入力してください"
+              blank: "を入力してください"
       messages:
-        taken: "はすでに使用されています"
+        taken: "の入力内容をご確認ください"
         too_short: "は%{count}文字以上で入力してください"
+        blank: "を入力してください"
