@@ -9,6 +9,22 @@
             <%= link_to "打線作成", new_lineup_path, class: "px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 text-sm font-medium" %>
           </div>
           
+          <%= search_form_for @q, url: lineups_path, method: :get, class: "space-y-2" do |f| %>
+            <div class="flex space-x-4 items-end">
+              <div>
+                <%= f.label :name_cont, "名前", class: "block text-sm text-gray-700" %>
+                <%= f.search_field :name_cont, class: "border rounded p-1" %>
+              </div>
+              <div>
+                <%= f.label :description_cont, "説明", class: "block text-sm text-gray-700" %>
+                <%= f.search_field :description_cont, class: "border rounded p-1" %>
+              </div>
+              <div>
+                <%= f.submit "検索", class: "bg-blue-500 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded" %>
+              </div>
+            </div>
+          <% end %>
+          
           <div class="p-6 space-y-4">
             <% @lineups.each do |lineup| %>
               <div class="border border-gray-300 rounded-lg p-4">

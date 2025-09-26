@@ -115,4 +115,14 @@ class Lineup < ApplicationRecord
     bases = [ nil, nil, nil ]
     [ bases, score ]
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[
+      name description expected_score created_at updated_at user_id
+    ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[lineup_entries players user]
+  end
 end

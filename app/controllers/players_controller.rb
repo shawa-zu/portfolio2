@@ -1,8 +1,8 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [ :edit, :update, :destroy ]
   def index
-    @q = Player.ransack(params[:q])
-    @players = @q.result.includes(:user).order(created_at: :desc)
+    @q = current_user.players.ransack(params[:q])
+    @players = @q.result.order(created_at: :desc)
   end
 
   def new
