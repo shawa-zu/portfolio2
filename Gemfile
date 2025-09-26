@@ -61,3 +61,5 @@ gem "devise", "~> 4.9"
 gem "tailwindcss-rails", "~> 4.3"
 
 gem "bcrypt", "~> 3.1.7"
+
+gem 'ransack'
