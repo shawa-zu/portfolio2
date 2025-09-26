@@ -27,4 +27,12 @@ class Player < ApplicationRecord
   def calculate_stat_out
     self.stat_out = 1.0 - (stat_1b.to_f + stat_2b.to_f + stat_3b.to_f + stat_hr.to_f)
   end
+
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[
+      name team position stat_1b stat_2b stat_3b stat_hr stat_out
+      created_at updated_at user_id
+    ]
+  end
 end
