@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
     @players = @q.result(distinct: true)
                 .order(created_at: :desc)
                 .page(params[:page])
-                .per(1)
+                .per(20)
   end
 
   def new
