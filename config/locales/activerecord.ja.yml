@@ -2,10 +2,14 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
+      lineup: "打順"
+      player: "選手"
     attributes:
       user:
         email: "メールアドレス"
         password: "パスワード"
+      lineup:
+        name: "打順名"
     errors:
       models:
         user:

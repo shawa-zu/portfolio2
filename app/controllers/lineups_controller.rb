@@ -4,8 +4,8 @@ class LineupsController < ApplicationController
     @q = current_user.lineups.ransack(params[:q])
     @lineups = @q.result(distinct: true)
                 .order(created_at: :desc)
-                .page(params[:page])   
-                .per(20)               
+                .page(params[:page])
+                .per(20)
   end
 
   def show
@@ -21,6 +21,7 @@ class LineupsController < ApplicationController
 
   def create
     @lineup = current_user.lineups.build(lineup_params)
+    @players = current_user.players.order(:name)
     if @lineup.save
       flash[:notice] = "打順を作成しました。"
       redirect_to lineups_path
@@ -35,16 +36,17 @@ def edit
   @players = current_user.players.order(:name)
 end
 
-def update
-  @lineup = current_user.lineups.find(params[:id])
-  if @lineup.update(lineup_params)
-    flash[:notice] = "打線を更新しました。"
-    redirect_to lineups_path
-  else
-    flash.now[:alert] = @lineup.errors.full_messages.to_sentence
-    render :edit, status: :unprocessable_entity
+  def update
+    @lineup = current_user.lineups.find(params[:id])
+    @players = current_user.players.order(:name)
+    if @lineup.update(lineup_params)
+      flash[:notice] = "打線を更新しました。"
+      redirect_to lineups_path
+    else
+      flash.now[:alert] = @lineup.errors.full_messages.to_sentence
+      render :edit, status: :unprocessable_entity
+    end
   end
-end
 
   def destroy
     @lineup.destroy
