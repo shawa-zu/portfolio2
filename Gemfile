@@ -63,3 +63,5 @@ gem "tailwindcss-rails", "~> 4.3"
 gem "bcrypt", "~> 3.1.7"
 
 gem 'ransack'
+
+gem 'kaminari'

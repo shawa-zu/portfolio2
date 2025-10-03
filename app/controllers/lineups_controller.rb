@@ -2,7 +2,10 @@ class LineupsController < ApplicationController
   before_action :set_lineup, only: [ :show, :edit, :update, :destroy ]
   def index
     @q = current_user.lineups.ransack(params[:q])
-    @lineups = @q.result.order(created_at: :desc)
+    @lineups = @q.result(distinct: true)
+                .order(created_at: :desc)
+                .page(params[:page])   
+                .per(20)               
   end
 
   def show
