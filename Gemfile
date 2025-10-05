@@ -67,3 +67,5 @@ gem "ransack"
 gem "kaminari"
 
 gem "omniauth-google-oauth2"
+
+gem "dotenv-rails", groups: [:development, :test]
