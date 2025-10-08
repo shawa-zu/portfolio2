@@ -65,3 +65,9 @@ gem "bcrypt", "~> 3.1.7"
 gem "ransack"
 
 gem "kaminari"
+
+gem "omniauth-google-oauth2"
+
+gem "dotenv-rails", groups: [ :development, :test ]
+
+gem "omniauth-rails_csrf_protection"
