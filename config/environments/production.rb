@@ -57,7 +57,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: "https://expected9.onrender.com" }
+  config.action_mailer.default_url_options = { host: "https://www.expected9.com" }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
@@ -86,9 +86,13 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-
+  
   Rails.application.routes.default_url_options = {
-    host: ENV.fetch("APP_HOST", "expected9.onrender.com"),
+    host: "www.expected9.com",
     protocol: "https"
   }
+
+  config.hosts << "expected9.com"
+  config.hosts << "www.expected9.com"
+  config.hosts << "expected9.onrender.com"
 end
