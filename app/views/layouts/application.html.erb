@@ -10,6 +10,23 @@
 
     <%= yield :head %>
 
+    <!-- ▼▼ 固定OGPここから追加 ▼▼ -->
+    <%= tag.meta property: "og:title",       content: "Expected9 | 野球チームの得点シミュレーター" %>
+    <%= tag.meta property: "og:description", content: "打順を入力するだけで平均得点をシミュレーションできます。" %>
+    <%= tag.meta property: "og:type",        content: "website" %>
+    <%= tag.meta property: "og:url",         content: root_url %>
+    <%= tag.meta property: "og:image",       content: image_url("ogp.png") %>
+    <%= tag.meta property: "og:site_name",   content: "Expected9" %>
+    <%= tag.meta property: "og:locale",      content: "ja_JP" %>
+
+    <%= tag.meta name: "twitter:card", content: "summary_large_image" %>
+    <%#= tag.meta name: "twitter:site", content: "@your_account" %> <%#←任意%>
+
+    <% unless Rails.env.production? %>
+      <%= tag.meta name: "robots", content: "noindex,nofollow" %>
+    <% end %>
+    <!-- ▲▲ 固定OGPここまで追加 ▲▲ -->
+
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
