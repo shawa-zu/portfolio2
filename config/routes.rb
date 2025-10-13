@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/about',   to: 'static_pages#about',   as: :about
+  get '/terms',   to: 'static_pages#terms',   as: :terms
+  get '/privacy', to: 'static_pages#privacy', as: :privacy
+  
   resources :lineups, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
   resources :players, only: [ :index, :new, :create, :edit, :update, :destroy ]
   devise_for :users, controllers: {
