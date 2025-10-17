@@ -42,17 +42,6 @@ class PlayersController < ApplicationController
     redirect_to players_path
   end
 
-  private
-
-  def player_params
-    params.require(:player).permit(:name, :team, :position, :description,
-                                   :stat_1b, :stat_2b, :stat_3b, :stat_hr)
-  end
-
-  def set_player
-    @player = current_user.players.find(params[:id])
-  end
-
   def autocomplete
     field = params[:field]
     query = params[:query]
@@ -67,5 +56,16 @@ class PlayersController < ApplicationController
     else
       render json: []
     end
+  end
+
+  private
+
+  def player_params
+    params.require(:player).permit(:name, :team, :position, :description,
+                                   :stat_1b, :stat_2b, :stat_3b, :stat_hr)
+  end
+
+  def set_player
+    @player = current_user.players.find(params[:id])
   end
 end

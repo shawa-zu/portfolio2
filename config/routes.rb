@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   resources :lineups, only: [ :index, :show, :new, :create, :edit, :update, :destroy ] do
-    get :auto_complete, on: :collection
+    get :autocomplete, on: :collection
   end
 
   resources :players, only: [ :index, :new, :create, :edit, :update, :destroy ] do
-    get :auto_complete, on: :collection
+    get :autocomplete, on: :collection
   end
-  
+
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks"
   }
