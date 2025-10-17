@@ -71,3 +71,13 @@ gem "omniauth-google-oauth2"
 gem "dotenv-rails", groups: [ :development, :test ]
 
 gem "omniauth-rails_csrf_protection"
+
+group :development, :test do
+  gem "rspec-rails"          # 本体
+  gem "factory_bot_rails"    # テストデータ
+  gem "faker"                # ダミー値
+  gem "shoulda-matchers"     # モデル検証を短く書く
+  gem "capybara"             # Systemテスト
+  gem "webdrivers", require: false # Chrome系を使うなら
+  gem "simplecov", require: false  # (任意) カバレッジ
+end
