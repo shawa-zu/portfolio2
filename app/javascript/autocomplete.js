@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultsList = input.parentElement.querySelector(".autocomplete-results");
     const field = input.dataset.field;
 
+    const controllerPath = window.location.pathname.includes("lineups") ? "lineups" : "players";
+
+
     input.addEventListener("input", async () => {
       const query = input.value.trim();
       if (query === "") {
