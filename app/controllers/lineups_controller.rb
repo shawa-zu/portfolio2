@@ -53,6 +53,22 @@ end
     redirect_to lineups_url, notice: "打線を削除しました。"
   end
 
+  def autocomplete
+    field = params[:field]
+    query = params[:query]
+
+    if %w[name description].include?(field) # ← lineupで検索したいカラムに合わせて変更
+      results = current_user.lineups
+                            .where("#{field} ILIKE ?", "%#{query}%")
+                            .distinct
+                            .limit(10)
+                            .pluck(field)
+      render json: results
+    else
+      render json: []
+    end
+  end
+
   private
   def set_lineup
     @lineup = current_user.lineups.find(params[:id])

@@ -42,6 +42,22 @@ class PlayersController < ApplicationController
     redirect_to players_path
   end
 
+  def autocomplete
+    field = params[:field]
+    query = params[:query]
+
+    if %w[name team position].include?(field)
+      results = current_user.players
+                            .where("#{field} ILIKE ?", "%#{query}%")
+                            .distinct
+                            .limit(10)
+                            .pluck(field)
+      render json: results
+    else
+      render json: []
+    end
+  end
+
   private
 
   def player_params

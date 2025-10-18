@@ -13,15 +13,20 @@
         <%= search_form_for @q, url: players_path, method: :get, class: "flex flex-wrap gap-4 items-end" do |f| %>
           <div>
             <%= f.label :name_cont, "名前", class: "block text-sm text-gray-700" %>
-            <%= f.search_field :name_cont, class: "border rounded p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+            <%= f.search_field :name_cont, class: "border rounded p-2 focus:outline-none focus:ring focus:border-blue-300", data: { field: "name" } %>
+            <ul class="autocomplete-results hidden absolute bg-white border w-40 rounded mt-1 z-10"></ul>
           </div>
+
           <div>
             <%= f.label :team_cont, "チーム", class: "block text-sm text-gray-700" %>
-            <%= f.search_field :team_cont, class: "border rounded p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+            <%= f.search_field :team_cont, class: "border rounded p-2 focus:outline-none focus:ring focus:border-blue-300", data: { field: "team" } %>
+            <ul class="autocomplete-results hidden absolute bg-white border w-40 rounded mt-1 z-10"></ul>
           </div>
+
           <div>
             <%= f.label :position_cont, "ポジション", class: "block text-sm text-gray-700" %>
-            <%= f.search_field :position_cont, class: "border rounded p-2 focus:outline-none focus:ring focus:border-blue-300" %>
+            <%= f.search_field :position_cont, class: "border rounded p-2 focus:outline-none focus:ring focus:border-blue-300", data: { field: "position" } %>
+            <ul class="autocomplete-results hidden absolute bg-white border w-40 rounded mt-1 z-10"></ul>
           </div>
           <div>
             <%= f.submit "検索", class: "bg-blue-500 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded" %>
