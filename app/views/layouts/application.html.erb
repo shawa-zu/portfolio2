@@ -10,6 +10,17 @@
 
     <%= yield :head %>
 
+    <% if Rails.env.production? %>
+      <!-- Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-753MH53KSR"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-753MH53KSR');
+      </script>
+    <% end %>
+
     <!-- ▼▼ 固定OGPここから追加 ▼▼ -->
     <%= tag.meta property: "og:title",       content: "Expected9 | 野球チームの得点シミュレーター" %>
     <%= tag.meta property: "og:description", content: "打順を入力するだけで平均得点をシミュレーションできます。" %>
