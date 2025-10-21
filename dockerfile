@@ -25,6 +25,9 @@ ENV RAILS_ENV="production" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development"
 
+ARG GOOGLE_REDIRECT_URI
+ENV GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
+
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
