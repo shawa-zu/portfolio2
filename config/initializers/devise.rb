@@ -316,7 +316,7 @@ Devise.setup do |config|
     {
     scope: "email,profile",
     prompt: "select_account",
-    redirect_uri: ENV.fetch('GOOGLE_REDIRECT_URI')
+    redirect_uri: ENV.fetch("GOOGLE_REDIRECT_URI")
     }
   Rails.application.config.to_prepare do
     Devise.omniauth_configs[:google_oauth2] = OmniAuth::Strategies::GoogleOauth2
